@@ -159,7 +159,13 @@ Basic operations, you'll want to copy-paste this for testing purposes:
   window.plugins.calendar.createEventWithOptions(title,eventLocation,notes,startDate,endDate,calOptions,success,error);
 
   // create an event interactively
-  window.plugins.calendar.createEventInteractively(title,eventLocation,notes,startDate,endDate,success,error);
+  window.plugins.calendar.createEventInteractively(title,eventLocation,notes,startDate,endDate,{},success,error);
+
+  // create an event interactively with calendar options
+  var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
+  calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
+  calOptions.secondReminderMinutes = 5;
+  window.plugins.calendar.createEventInteractively(title,eventLocation,notes,startDate,endDate,calOptions,success,error);
 
   // create an event in a named calendar (iOS only for now)
   window.plugins.calendar.createEventInNamedCalendar(title,eventLocation,notes,startDate,endDate,calendarName,success,error);
